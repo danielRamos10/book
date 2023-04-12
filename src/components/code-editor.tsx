@@ -2,7 +2,11 @@ import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import { useRef } from "react";
-import './code-editor.css';
+import codeShift from "jscodeshift";
+import Highlighter from "monaco-jsx-highlighter";
+import "./code-editor.css";
+import './syntax.css'
+
 interface CodeEditorProps {
   initialValue: string;
   onChange(value: string): void;
@@ -15,22 +19,37 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
       onChange(getValue());
     });
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
+
+    const highlighter = new Highlighter(
+      //@ts-ignore
+      window.monaco,
+      codeShift,
+      monacoEditor
+    );
+    highlighter.highLightOnDidChangeModelContent(
+    ()=>{},
+    ()=>{},
+    undefined,
+    ()=>{},
+    );
   };
   const onFormatClick = () => {
     const unformattedVal = editorRef.current.getModel().getValue();
-    const formattedVal = prettier.format(unformattedVal, {
-      parser: "babel",
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-    }).replace(/\n$/, '');
+    const formattedVal = prettier
+      .format(unformattedVal, {
+        parser: "babel",
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+      })
+      .replace(/\n$/, "");
     editorRef.current.setValue(formattedVal);
   };
   return (
     <div className="editor-wrapper">
       <button
-        className="button button-format is-info is-small"
+        className="button button-format is-primary is-small"
         onClick={onFormatClick}
       >
         Format
@@ -39,7 +58,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         editorDidMount={onEditorDidMount}
         value={initialValue}
         language="javascript"
-        height="200px"
+        height="300px"
         theme="dark"
         options={{
           wordWrap: "on",
