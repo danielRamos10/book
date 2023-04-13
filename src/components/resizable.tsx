@@ -25,8 +25,8 @@ export const Resizable: React.FC<ResizableProps> = ({
       timer = setTimeout(() => {
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
-        if(window.innerWidth *0.75 < width){
-          setWidth(window.innerWidth*0.75);
+        if (window.innerWidth * 0.75 < width) {
+          setWidth(window.innerWidth * 0.75);
         }
       }, 100);
     };

@@ -5,7 +5,7 @@ import { useRef } from "react";
 import codeShift from "jscodeshift";
 import Highlighter from "monaco-jsx-highlighter";
 import "./code-editor.css";
-import './syntax.css'
+import "./syntax.css";
 
 interface CodeEditorProps {
   initialValue: string;
@@ -27,10 +27,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
       monacoEditor
     );
     highlighter.highLightOnDidChangeModelContent(
-    ()=>{},
-    ()=>{},
-    undefined,
-    ()=>{},
+      () => {},
+      () => {},
+      undefined,
+      () => {}
     );
   };
   const onFormatClick = () => {

@@ -1,7 +1,5 @@
 import * as esbuild from "esbuild-wasm";
 
-
-
 export const unpkgPathPlugin = () => {
   return {
     name: "unpkg-path-plugin",
@@ -20,15 +18,11 @@ export const unpkgPathPlugin = () => {
       });
       //handle main file module
       build.onResolve({ filter: /.*/ }, async (args: any) => {
-        console.log("onResolve", args);
-
         return {
           namespace: "a",
           path: `https://unpkg.com/${args.path}`,
         };
       });
-
-      
     },
   };
 };
