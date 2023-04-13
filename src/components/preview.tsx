@@ -1,12 +1,18 @@
 import { useEffect, useRef } from "react";
-import './preview.css';
+import "./preview.css";
 
 interface PreviewProps {
   code: string;
 }
 const html = `
 <html>
-<head></head>
+<head>
+<style>
+html{
+  background-color: white;
+}
+</style>
+</head>
 <body>
   <div id="root"></div>
   <script>
@@ -33,14 +39,13 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
 
   return (
     <div className="preview-wrapper">
-        <iframe
-      title="preview-window"
-      ref={iframeRef}
-      srcDoc={html}
-      sandbox="allow-scripts"
-    />
+      <iframe
+        title="preview-window"
+        ref={iframeRef}
+        srcDoc={html}
+        sandbox="allow-scripts"
+      />
     </div>
-    
   );
 };
 export default Preview;
