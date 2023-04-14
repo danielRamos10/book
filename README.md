@@ -1,6 +1,6 @@
 
 ## Available Scripts
-### before runnintg anything, please run npm i --legacy-peer-deps
+Before runnintg anything, please run ### `npm i --legacy-peer-deps`
 
 In the project directory, you can run:
 
