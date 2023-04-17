@@ -19,11 +19,11 @@ export const updateCell = (id: string, content: string): UpdateCellAction => {
   };
 };
 export const deleteCell = (id: string): DeleteCellAction => {
-  return {
-    type: ActionType.DELETE_CELL,
-    payload: { id },
+    return {
+      type: ActionType.DELETE_CELL,
+      payload: id,
+    };
   };
-};
 export const moveCell = (id: string, direction: Direction): MoveCellAction => {
   return {
     type: ActionType.MOVE_CELL,
