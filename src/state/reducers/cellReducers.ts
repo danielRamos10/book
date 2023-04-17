@@ -16,7 +16,7 @@ const initialState: CellReducerState = {
   order: [],
   data: {},
 };
-const reducer = (
+const cellsReducer = (
   state: CellReducerState = initialState,
   action: Action
 ): CellReducerState => {
@@ -33,4 +33,4 @@ const reducer = (
       return state;
   }
 };
-export default reducer;
+export default cellsReducer;
